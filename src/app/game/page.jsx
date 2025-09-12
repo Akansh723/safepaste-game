@@ -9,6 +9,7 @@ const DataEntryPage = () => {
     const [showModal, setShowModal] = useState(false);
     const [currentParagraph, setCurrentParagraph] = useState("");
     const [userName, setUserName] = useState('');
+    const [count, setCount] = useState('');
     const [avatarUrl, setAvatarUrl] = useState('');
     const dataEntryBoxRef = useRef(null);
 
@@ -21,13 +22,17 @@ const DataEntryPage = () => {
         setAvatarUrl(av?.url || '');
     }, []);
 
-    const handleConfirm = async () => {
+    const getSensitiveDataCount = () =>{
         const { sensitiveData } = parapraghData
         var count = 0
-        sensitiveData.forEach((sensitiveString) => !currentParagraph.includes(sensitiveString) && count++)
-
+        sensitiveData.forEach((sensitiveString) => {
+            console.log(sensitiveString, currentParagraph.includes(sensitiveString), "akansh")
+            currentParagraph.includes(sensitiveString) && count++}
+        )
+        return count
+    }
+    const handleConfirm = async () => {
         const userId = typeof window !== 'undefined' ? sessionStorage.getItem('id') : null;
-
         try {
             const res = await fetch(`/api/submit/${userId}`, {
                 method: "PATCH",
@@ -35,7 +40,7 @@ const DataEntryPage = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    correct_count: count,
+                    correct_count: getSensitiveDataCount(),
                 }),
             });
             if (!res.ok) {
@@ -56,9 +61,9 @@ const DataEntryPage = () => {
     };
 
     const handleCheckParagraph = (e) => {
-        // TODO
         e.preventDefault()
-        setCurrentParagraph("api_key")
+        const count = getSensitiveDataCount()
+        setCount(count)
     };
 
     return (
@@ -81,9 +86,10 @@ const DataEntryPage = () => {
                     <div className={styles.inputGroup}>
                         <label htmlFor="data-entry-box">Your result:</label>
                         <div ref={dataEntryBoxRef} className={styles.dataEntryBox} id="data-entry-box">
-                            <textarea className={styles.textarea}/>
+                            <textarea className={styles.textarea} value={currentParagraph} id="textArea" onChange={(e)=> setCurrentParagraph(e.target.value)}/>
                         </div>
-                        <button type="submit" onClick={handleCheckParagraph} className={styles.checkButton}>Check Current Paragraph</button>
+                        <button type="submit" onClick={handleCheckParagraph} className={styles.checkButton} >Check Current Paragraph</button>
+                        {!!count && <p>{`You have identified ${count} sensitive data`}</p>}
                     </div>
                     <span className={styles.note}>Note: Data can only be transmitted once.</span>
                 </form>
