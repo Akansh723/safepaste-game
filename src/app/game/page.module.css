@@ -1,0 +1,318 @@
+.bodyContainer {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+.auroraContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    filter: blur(80px);
+}
+
+.auroraBand {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+}
+
+.aurora1 {
+    width: 80vw;
+    height: 70vh;
+    background-color: var(--aurora-1);
+    animation: move-aurora1 22s infinite alternate ease-in-out;
+}
+
+.aurora2 {
+    width: 70vw;
+    height: 80vh;
+    background-color: var(--aurora-2);
+    animation: move-aurora2 25s infinite alternate ease-in-out;
+}
+
+.aurora3 {
+    width: 60vw;
+    height: 60vh;
+    background-color: var(--aurora-3);
+    animation: move-aurora3 19s infinite alternate ease-in-out;
+}
+
+@keyframes move-aurora1 {
+    from { transform: translate(-40vw, -40vh) rotate(-30deg); }
+    to { transform: translate(40vw, 50vh) rotate(45deg); }
+}
+
+@keyframes move-aurora2 {
+    from { transform: translate(50vw, -30vh) rotate(20deg); }
+    to { transform: translate(-30vw, 40vh) rotate(-50deg); }
+}
+
+@keyframes move-aurora3 {
+    from { transform: translate(-20vw, 60vh) rotate(60deg); }
+    to { transform: translate(30vw, -40vh) rotate(10deg); }
+}
+
+.dataCard {
+    background-color: var(--card-bg);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 1200px;
+    z-index: 10;
+}
+
+.dataCard h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.contentArea {
+    text-align: left;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.contentArea h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    color: var(--accent-color);
+}
+
+.contentArea p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #d1d5db;
+}
+
+.inputGroup label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #d1d5db;
+}
+
+.dataEntryBox {
+    width: 100%;
+    min-height: 150px;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    box-sizing: border-box;
+    overflow-y: auto;
+    text-align: left;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.dataEntryBox p {
+    margin: 0 0 10px 0;
+    padding: 0;
+    color: #e0e0e0;
+}
+
+.checkButton {
+    background-color: #28a745;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.checkButton:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+}
+
+.submitButton {
+    background-color: var(--accent-color);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 30px;
+    width: 100%;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px var(--accent-glow);
+}
+
+.submitButton:active {
+    transform: translateY(-1px);
+}
+.submitButton:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.note{
+    text-align: left;
+    margin-top:8px;
+    width: 100%;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profile{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    z-index: 11;
+}
+.profile p{
+    margin-right: 6px;
+}
+
+.profile img{
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+    background-color: var(--card-bg);
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    color: var(--text-color);
+    animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    position: relative;
+    z-index: 101;
+}
+
+.modalContent h2 {
+    font-size: 1.8rem;
+    margin-top: 0;
+    color: var(--accent-color);
+}
+
+.modalContent p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #d1d5db;
+}
+
+.modalDataPreview {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
+    color: #a7f3d0;
+    word-wrap: break-word;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.confirmButton, .cancelButton {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.confirmButton {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.confirmButton:hover {
+    background-color: var(--accent-glow);
+    box-shadow: 0 4px 15px var(--accent-glow-subtle);
+    transform: translateY(-2px);
+}
+
+.cancelButton {
+    background-color: #4a5568;
+    color: #fff;
+}
+
+.cancelButton:hover {
+    background-color: #64748b;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px) scale(0.9); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
