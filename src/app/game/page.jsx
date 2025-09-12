@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './page.module.css';
 import avatar from '../../data';
 import { parapraghData } from './constant';
@@ -8,13 +8,26 @@ import { parapraghData } from './constant';
 const DataEntryPage = () => {
     const [showModal, setShowModal] = useState(false);
     const [currentParagraph, setCurrentParagraph] = useState("");
+    const [userName, setUserName] = useState('');
+    const [avatarUrl, setAvatarUrl] = useState('');
     const dataEntryBoxRef = useRef(null);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const name = sessionStorage.getItem('name') || '';
+        const avId = sessionStorage.getItem('avatar');
+        const av = avatar.find((a) => a.id === avId);
+        setUserName(name);
+        setAvatarUrl(av?.url || '');
+    }, []);
 
     const handleConfirm = async () => {
         const { sensitiveData } = parapraghData
         var count = 0
         sensitiveData.forEach((sensitiveString) => !currentParagraph.includes(sensitiveString) && count++)
-        const userId = sessionStorage.getItem("id")
+
+        const userId = typeof window !== 'undefined' ? sessionStorage.getItem('id') : null;
+
         try {
             const res = await fetch(`/api/submit/${userId}`, {
                 method: "PATCH",
@@ -56,8 +69,8 @@ const DataEntryPage = () => {
                 {/* <div className={`${styles.auroraBand} ${styles.aurora3}`} id="aurora-3"></div> */}
             </div>
             <div className={styles.profile}>
-                <p>{sessionStorage.getItem("name")}</p>
-                <img width={45} src={avatar.find(av => sessionStorage.getItem("avatar") === av.id)?.url} alt="User Avatar" />
+                <p>{userName}</p>
+                <img width={45} src={avatarUrl} alt="User Avatar" />
             </div>
             <main className={styles.dataCard}>
                 <h1>Mission Briefing</h1>
@@ -68,7 +81,7 @@ const DataEntryPage = () => {
                     <div className={styles.inputGroup}>
                         <label htmlFor="data-entry-box">Your result:</label>
                         <div ref={dataEntryBoxRef} className={styles.dataEntryBox} id="data-entry-box">
-                            <p>{currentParagraph}</p>
+                            <textarea className={styles.textarea}/>
                         </div>
                         <button type="submit" onClick={handleCheckParagraph} className={styles.checkButton}>Check Current Paragraph</button>
                     </div>

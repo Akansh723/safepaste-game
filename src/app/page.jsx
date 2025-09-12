@@ -21,9 +21,11 @@ const Login = () => {
                 body: JSON.stringify({ name: codename, pin }),
             });
             const result = await res.json();
-            sessionStorage.setItem("id", result?.id)
-            sessionStorage.setItem("name", codename)
-            sessionStorage.setItem("avatar", selectedAvatar)
+            if (typeof window !== 'undefined') {
+                sessionStorage.setItem("id", result?.id)
+                sessionStorage.setItem("name", codename)
+                sessionStorage.setItem("avatar", selectedAvatar)
+            }
             router.push("/game")
         } catch (err) {
             console.error("Error login", err)
