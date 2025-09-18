@@ -48,18 +48,33 @@
 }
 
 @keyframes move-aurora1 {
-    from { transform: translate(-40vw, -40vh) rotate(-30deg); }
-    to { transform: translate(40vw, 50vh) rotate(45deg); }
+    from {
+        transform: translate(-40vw, -40vh) rotate(-30deg);
+    }
+
+    to {
+        transform: translate(40vw, 50vh) rotate(45deg);
+    }
 }
 
 @keyframes move-aurora2 {
-    from { transform: translate(50vw, -30vh) rotate(20deg); }
-    to { transform: translate(-30vw, 40vh) rotate(-50deg); }
+    from {
+        transform: translate(50vw, -30vh) rotate(20deg);
+    }
+
+    to {
+        transform: translate(-30vw, 40vh) rotate(-50deg);
+    }
 }
 
 @keyframes move-aurora3 {
-    from { transform: translate(-20vw, 60vh) rotate(60deg); }
-    to { transform: translate(30vw, -40vh) rotate(10deg); }
+    from {
+        transform: translate(-20vw, 60vh) rotate(60deg);
+    }
+
+    to {
+        transform: translate(30vw, -40vh) rotate(10deg);
+    }
 }
 
 .dataCard {
@@ -92,6 +107,17 @@
     border: 1px solid rgba(255, 255, 255, 0.15);
     max-height: 400px;
     overflow: auto;
+    position: relative;
+}
+
+.copyButton {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
 }
 
 .contentArea h2 {
@@ -117,7 +143,7 @@
 .dataEntryBox {
     width: 100%;
     min-height: 150px;
-    padding: 12px 15px;
+    padding: 5px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: var(--input-bg);
     color: var(--text-color);
@@ -151,6 +177,11 @@
     margin-bottom: 20px;
 }
 
+.checkButton:disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
 .checkButton:hover {
     background-color: #218838;
     transform: translateY(-2px);
@@ -168,7 +199,7 @@
     border-radius: 8px;
     padding: 15px 30px;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -181,6 +212,7 @@
 .submitButton:active {
     transform: translateY(-1px);
 }
+
 .submitButton:disabled {
     background-color: #555;
     cursor: not-allowed;
@@ -188,15 +220,17 @@
     transform: none;
 }
 
-.note{
+.note {
     text-align: left;
-    margin-top:8px;
+    margin-top: 8px;
+    color: red;
+    font-size: 11px;
     width: 100%;
     display: inline-block;
     font-family: 'Poppins', sans-serif;
 }
 
-.profile{
+.profile {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -206,11 +240,12 @@
     z-index: 11;
     margin-right: 20px;
 }
-.profile p{
+
+.profile p {
     margin-right: 6px;
 }
 
-.profile img{
+.profile img {
     border-radius: 50%;
     border: 2px solid white;
 }
@@ -277,7 +312,8 @@
     margin-top: 20px;
 }
 
-.confirmButton, .cancelButton {
+.confirmButton,
+.cancelButton {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     font-weight: 600;
@@ -298,13 +334,15 @@
     box-shadow: 0 4px 15px var(--accent-glow-subtle);
     transform: translateY(-2px);
 }
-.textarea{
+
+.textarea {
     background-color: unset;
     border: none;
     width: 100%;
     height: 300px;
     color: white;
 }
+
 .cancelButton {
     background-color: #4a5568;
     color: #fff;
@@ -317,11 +355,23 @@
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes slideIn {
-    from { transform: translateY(-50px) scale(0.9); opacity: 0; }
-    to { transform: translateY(0) scale(1); opacity: 1; }
+    from {
+        transform: translateY(-50px) scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
 }
