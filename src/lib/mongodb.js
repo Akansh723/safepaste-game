@@ -1,7 +1,6 @@
 // lib/mongodb.ts
 import { MongoClient } from "mongodb";
 
-console.log(process.env, "qwerty")
 const uri = `mongodb+srv://akanshsaxena723:h35V29AK5RZuLXbn@safepaste.ihi6oge.mongodb.net/?retryWrites=true&w=majority&appName=Safepaste`
 const options = {};
 

@@ -22,9 +22,10 @@ const Login = () => {
             });
             const result = await res.json();
             if (typeof window !== 'undefined') {
-                sessionStorage.setItem("id", result?.id)
-                sessionStorage.setItem("name", codename)
-                sessionStorage.setItem("avatar", selectedAvatar)
+                localStorage.setItem("id", result?.id)
+                localStorage.setItem("gamepin", pin);
+                localStorage.setItem("name", codename)
+                localStorage.setItem("avatar", selectedAvatar)
             }
             router.push("/game")
         } catch (err) {
@@ -56,7 +57,7 @@ const Login = () => {
                         />
                     </div>
                     <div className={styles.inputGroup}>
-                        <label htmlFor="pin" className={styles.label}>Secret Code (4 Digits)</label>
+                        <label htmlFor="pin" className={styles.label}>Game PIN</label>
                         <input
                             type="password"
                             id="pin"
@@ -87,7 +88,7 @@ const Login = () => {
                             })}
                         </div>
                     </div>
-                    <button onClick={handleSubmit} className={styles.startButton} disabled={codename === "" || pin === ""}>Engage</button>
+                    <button onClick={handleSubmit} className={styles.startButton} disabled={codename === "" || pin === ""}>Join</button>
                 </form>
             </main>
         </div>
