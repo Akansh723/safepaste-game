@@ -16,7 +16,7 @@ const DashboardPage = () => {
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
-
+    
     const fetchGame = async () => {
         try {
             const res = await fetch(`/api/getGame?gameId=${gameId}`);
@@ -188,9 +188,9 @@ const DashboardPage = () => {
                                     <tbody>
                                         {users.map((user, i) => (
                                             <tr key={i}>
-                                                <td>{user.name}</td>
+                                                <td>{game.status === "completed" ? user.name: "****"}</td>
                                                 <td>{user.correct_count ?? '-'}</td>
-                                                <td>{moment(user.submittedAt).format("hh:mm:ss A")}</td>
+                                                <td>{user.submittedAt ? moment(user.submittedAt).format("hh:mm:ss A") : "-"}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -215,7 +215,7 @@ const DashboardPage = () => {
                                             <tr key={i}>
                                                 <td>{user.name}</td>
                                                 <td>{user.correct_count ?? '-'}</td>
-                                                <td>{moment(user.submittedAt).format("hh:mm:ss A")}</td>
+                                                <td>{moment(user.submittedAt).format("hh:mm:ss")}</td>
                                             </tr>
                                         ))}
                                     </tbody>
